@@ -1,4 +1,5 @@
 #include <iostream>
+#include "StudentManagement.h"
 using namespace std;
 class Student
 {
@@ -22,4 +23,6 @@ public:
     ~Student();
     friend istream &operator >> (istream &in, Student &student);
     friend ostream &operator << (ostream &out, Student &student);
+    friend bool studentManagement::indexOf(string id);
+    friend void studentManagement::removeStudent(string id);
 };

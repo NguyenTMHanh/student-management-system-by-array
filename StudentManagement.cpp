@@ -1,5 +1,5 @@
 #include <iostream>
-#include "studentManagement.h"
+#include "Student.h"
 #include <iomanip>
 using namespace std;
 
@@ -61,7 +61,7 @@ void studentManagement::addStudent()
     cout << "\nnhap so luong sinh vien ban muon them: ";
     cin >> addSize;
 
-    //mảng addStudentArray chứa danh sách sinh viên bạn muốn thêm vào
+    // mảng addStudentArray chứa danh sách sinh viên bạn muốn thêm vào
     Student *addStudentArray = new Student[addSize];
     for (int i = 0; i < addSize; i++)
     {
@@ -69,7 +69,7 @@ void studentManagement::addStudent()
         cin >> addStudentArray[i];
     }
 
-    //mảng studentArrayTemp là mảng tạm để chứa danh sách sinh viên ban đầu
+    // mảng studentArrayTemp là mảng tạm để chứa danh sách sinh viên ban đầu
     Student *originalStudentArray = new Student[this->currentSize];
     for (int i = 0; i < this->currentSize; i++)
     {
@@ -77,7 +77,7 @@ void studentManagement::addStudent()
     }
     delete[] this->studentArray;
 
-    //cập nhật lại kích thước tối đa của mảng chứa danh sách sinh viên và cấp phát lại một danh sách sinh viên mới = danh sách ban đầu + danh sách thêm
+    // cập nhật lại kích thước tối đa của mảng chứa danh sách sinh viên và cấp phát lại một danh sách sinh viên mới = danh sách ban đầu + danh sách thêm
     this->maxSize += addSize;
     this->studentArray = new Student[maxSize];
     for (int i = 0; i < this->currentSize; i++)
@@ -91,4 +91,40 @@ void studentManagement::addStudent()
         this->currentSize++;
     }
     delete[] addStudentArray;
+}
+
+// hàm kiểm tra xem một mã số sinh viên bất kỳ có tồn tại không
+bool studentManagement::indexOf(string id)
+{
+    for (int i = 0; i < this->currentSize; i++)
+    {
+        if (this->studentArray[i].id == id)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+// hàm xóa một sinh viên theo id
+void studentManagement::removeStudent(string id)
+{
+    if (indexOf(id))
+    {
+        for (int i = 0; i < this->currentSize; i++)
+        {
+            if (this->studentArray[i].id == id)
+            {
+                for (int j = i; j < this->currentSize - 1; j++)
+                {
+                    this->studentArray[j] = this->studentArray[j + 1];
+                }
+                this->currentSize--;
+                break;
+            }
+        }
+    }
+    else{
+        cout<<"khong ton tai ma so sinh vien cua sinh vien ma ban muon xoa"<<endl;
+    }
 }
