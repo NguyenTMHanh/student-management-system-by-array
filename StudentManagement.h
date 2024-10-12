@@ -14,4 +14,5 @@ public:
     ~studentManagement();
     friend istream &operator >> (istream &in, studentManagement &studentManagement);
     friend ostream &operator << (ostream &out, const studentManagement &studentManagement);
+    void addStudent ();
 };

@@ -7,5 +7,7 @@ int main(){
     studentManagement studentManagement(size, size);
     cin>>studentManagement;
     cout<<studentManagement;
+    studentManagement.addStudent();
+    cout<<studentManagement;
     return 0;
 }
