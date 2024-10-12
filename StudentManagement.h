@@ -16,4 +16,6 @@ public:
     void addStudent();
     bool indexOf(string id);
     void removeStudent(string id);
+    void updateStudent(string id);
+    int searchStudent(string id);
 };

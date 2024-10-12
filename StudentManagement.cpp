@@ -124,7 +124,41 @@ void studentManagement::removeStudent(string id)
             }
         }
     }
+    else
+    {
+        cout << "khong ton tai ma so sinh vien cua sinh vien ma ban muon xoa" << endl;
+    }
+}
+
+// hàm tìm kiếm sinh viên theo id và trả về vị trí của sinh viên đó
+int studentManagement::searchStudent(string id)
+{
+    if (indexOf(id))
+    {
+        for (int i = 0; i < this->currentSize; i++)
+        {
+            if (this->studentArray[i].id == id)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+    else
+    {
+        return -1;
+    }
+}
+
+// hàm cập nhật thông tin sinh viên theo id
+void studentManagement::updateStudent(string id)
+{
+    int index = searchStudent(id);
+    if (index != -1)
+    {
+        cin>>studentArray[index];
+    }
     else{
-        cout<<"khong ton tai ma so sinh vien cua sinh vien ma ban muon xoa"<<endl;
+        cout<<"khong tim thay sinh vien co ma so sinh vien "<<id<<" trong danh sach"<<endl;
     }
 }

@@ -25,4 +25,6 @@ public:
     friend ostream &operator << (ostream &out, Student &student);
     friend bool studentManagement::indexOf(string id);
     friend void studentManagement::removeStudent(string id);
+    friend void studentManagement::updateStudent(string id);
+    friend int studentManagement::searchStudent(string id);
 };
