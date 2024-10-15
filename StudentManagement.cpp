@@ -156,7 +156,60 @@ void studentManagement::updateStudent(string id)
     int index = searchStudent(id);
     if (index != -1)
     {
-        cin>>studentArray[index];
+         cout << "ban muon cap nhat thong tin gi cua sinh vien co ma so " << id << "?" << endl;
+        cout << "1. Ho va ten" << endl;
+        cout << "2. Lop" << endl;
+        cout << "3. Khoa" << endl;
+        cout << "4. Gioi tinh" << endl;
+        cout << "5. Diem Toan" << endl;
+        cout << "6. Diem Tieng anh" << endl;
+        cout << "7. Diem Van" << endl;
+        cout << "8. Cap nhat tat ca thong tin cua sinh vien" << endl;
+        int chose;
+        cout << "Hay nhap lua chon cua ban: ";
+        cin >> chose;
+        switch (chose)
+        {
+        case 1:
+            cout << "Nhap ten: ";
+            getline(cin>>std::ws, this->studentArray[index].name);
+            break;
+        case 2:
+            cout << "Nhap lop: ";
+            cin >> this->studentArray[index].className;
+            break;
+        case 3:
+            cout << "nhap khoa: ";
+            cin >> this->studentArray[index].facultyName;
+            break;
+        case 4:
+            cout << "Nhap gioi tinh:";
+            cin >> this->studentArray[index].sex;
+            break;
+        case 5:
+            cout << "Nhap diem Toan: ";
+            cin >> this->studentArray[index].mathScore;
+            this->studentArray[index].averageScore = (this->studentArray[index].mathScore + this->studentArray[index].englishScore + this->studentArray[index].literatureScore) / 3;
+            this->studentArray[index].academicPerformance = this->studentArray[index].getAcademicPerformance(this->studentArray[index].averageScore);
+            break;
+        case 6:
+            cout << "Nhap diem Tieng anh: ";
+            cin >> this->studentArray[index].englishScore;
+            this->studentArray[index].averageScore = (this->studentArray[index].mathScore + this->studentArray[index].englishScore + this->studentArray[index].literatureScore) / 3;
+            this->studentArray[index].academicPerformance = this->studentArray[index].getAcademicPerformance(this->studentArray[index].averageScore);
+            break;
+        case 7:
+            cout << "Nhap diem Van: ";
+            cin >> this->studentArray[index].literatureScore;
+            this->studentArray[index].averageScore = (this->studentArray[index].mathScore + this->studentArray[index].englishScore + this->studentArray[index].literatureScore) / 3;
+            this->studentArray[index].academicPerformance = this->studentArray[index].getAcademicPerformance(this->studentArray[index].averageScore);
+            break;
+        case 8:
+            cin>>this->studentArray[index];
+            break;
+        default:
+            break;
+        }
     }
     else{
         cout<<"khong tim thay sinh vien co ma so sinh vien "<<id<<" trong danh sach"<<endl;
