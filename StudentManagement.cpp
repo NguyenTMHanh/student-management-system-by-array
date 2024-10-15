@@ -156,7 +156,7 @@ void studentManagement::updateStudent(string id)
     int index = searchStudent(id);
     if (index != -1)
     {
-         cout << "ban muon cap nhat thong tin gi cua sinh vien co ma so " << id << "?" << endl;
+        cout << "ban muon cap nhat thong tin gi cua sinh vien co ma so " << id << "?" << endl;
         cout << "1. Ho va ten" << endl;
         cout << "2. Lop" << endl;
         cout << "3. Khoa" << endl;
@@ -172,7 +172,7 @@ void studentManagement::updateStudent(string id)
         {
         case 1:
             cout << "Nhap ten: ";
-            getline(cin>>std::ws, this->studentArray[index].name);
+            getline(cin >> std::ws, this->studentArray[index].name);
             break;
         case 2:
             cout << "Nhap lop: ";
@@ -205,13 +205,65 @@ void studentManagement::updateStudent(string id)
             this->studentArray[index].academicPerformance = this->studentArray[index].getAcademicPerformance(this->studentArray[index].averageScore);
             break;
         case 8:
-            cin>>this->studentArray[index];
+            cin >> this->studentArray[index];
             break;
         default:
             break;
         }
     }
-    else{
-        cout<<"khong tim thay sinh vien co ma so sinh vien "<<id<<" trong danh sach"<<endl;
+    else
+    {
+        cout << "khong tim thay sinh vien co ma so sinh vien " << id << " trong danh sach" << endl;
+    }
+}
+
+// hàm tìm kiếm sinh viên theo id hoặc tên và in ra sinh viên đó
+void studentManagement::searchAndShowStudent()
+{
+    string search;
+    int index = 0;
+    cout << "Ban muon tim kiem sinh vien theo: " << endl;
+    cout << "1. ma so sinh vien" << endl;
+    cout << "2. ten sinh vien" << endl;
+    cout << "nhap mot ky bat ki de thoat khoi chuong trinh" << endl;
+    int chose;
+    cout << "hay nhap lua chon cua ban: ";
+    cin >> chose;
+    switch (chose)
+    {
+    case 1:
+        cout << "nhap ma so sinh vien: ";
+        cin >> search;
+        cout << "\n                                                        DANH SACH SINH VIEN                                " << endl;
+        cout << left << setw(5) << "STT" << setw(15) << "ID" << setw(30) << "Ho va ten"
+            << setw(10) << "Lop" << setw(10) << "Khoa" << setw(15) << "Gioi tinh" << setw(10) << "Toan"
+            << setw(10) << "Anh" << setw(10) << "Van" << setw(10) << "Diem TB"
+            << setw(10) << "Hoc luc" << endl;
+        for (int i = 0; i < this->currentSize; i++)
+        {
+            if (this->studentArray[i].id == search)
+            {
+                cout << this->studentArray[i];
+            }
+        }
+        break;
+    case 2:
+        cout << "nhap ho va ten: ";
+        getline(cin >> std::ws, search);
+        cout << "\n                                                        DANH SACH SINH VIEN                                " << endl;
+        cout << left << setw(5) << "STT" << setw(15) << "ID" << setw(30) << "Ho va ten"
+            << setw(10) << "Lop" << setw(10) << "Khoa" << setw(15) << "Gioi tinh" << setw(10) << "Toan"
+            << setw(10) << "Anh" << setw(10) << "Van" << setw(10) << "Diem TB"
+            << setw(10) << "Hoc luc" << endl;
+        for (int i = 0; i < this->currentSize; i++)
+        {
+            if (this->studentArray[i].name == search)
+            {
+                cout << this->studentArray[i];
+            }
+        }
+        break;
+    default:
+        break;
     }
 }

@@ -18,4 +18,5 @@ public:
     void removeStudent(string id);
     void updateStudent(string id);
     int searchStudent(string id);
+    void searchAndShowStudent();
 };
