@@ -1,10 +1,12 @@
-#include<iostream>
+#include <iostream>
 #include "StudentManagement.h"
 using namespace std;
-int main(){
+int main()
+{
     int size;
     string studentId;
-    cout<<"nhap so luong sinh vien: "; cin>>size;
+    cout << "nhap so luong sinh vien: ";
+    cin >> size;
     studentManagement studentManagement(size, size);
     cin>>studentManagement;
     cout<<studentManagement;
@@ -16,6 +18,8 @@ int main(){
     // cout<<"\nnhap ma so sinh vien cua sinh vien ma ban muon cap nhat: "; cin>>studentId;
     // studentManagement.updateStudent(studentId);
     // cout<<studentManagement;
-    studentManagement.searchAndShowStudent();
+    // studentManagement.searchAndShowStudent();
+    studentManagement.sortStudentByGPA();
+    cout << studentManagement;
     return 0;
 }

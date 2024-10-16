@@ -28,4 +28,5 @@ public:
     friend void studentManagement::updateStudent(string id);
     friend int studentManagement::searchStudent(string id);
     friend void studentManagement::searchAndShowStudent();
+    friend void studentManagement::sortStudentByGPA();
 };

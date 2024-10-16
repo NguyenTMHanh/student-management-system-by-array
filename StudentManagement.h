@@ -19,4 +19,5 @@ public:
     void updateStudent(string id);
     int searchStudent(string id);
     void searchAndShowStudent();
+    void sortStudentByGPA();
 };

@@ -267,3 +267,26 @@ void studentManagement::searchAndShowStudent()
         break;
     }
 }
+// sắp xếp danh sách sinh viên theo điểm trung bình giảm dần
+void studentManagement::sortStudentByGPA()
+{
+    int max;
+    Student temp;
+    for (int i = 0; i < this->currentSize; i++)
+    {
+        max = i;
+        for (int j = i + 1; j < this->currentSize; j++)
+        {
+            if (this->studentArray[j].averageScore > this->studentArray[max].averageScore)
+            {
+                max = j;
+            }
+        }
+        if (max != i)
+        {
+            temp = this->studentArray[max];
+            this->studentArray[max] = this->studentArray[i];
+            this->studentArray[i] = temp;
+        }
+    }
+}
