@@ -156,7 +156,7 @@ void studentManagement::updateStudent(string id)
     int index = searchStudent(id);
     if (index != -1)
     {
-         cout << "ban muon cap nhat thong tin gi cua sinh vien co ma so " << id << "?" << endl;
+        cout << "ban muon cap nhat thong tin gi cua sinh vien co ma so " << id << "?" << endl;
         cout << "1. Ho va ten" << endl;
         cout << "2. Lop" << endl;
         cout << "3. Khoa" << endl;
@@ -172,7 +172,7 @@ void studentManagement::updateStudent(string id)
         {
         case 1:
             cout << "Nhap ten: ";
-            getline(cin>>std::ws, this->studentArray[index].name);
+            getline(cin >> std::ws, this->studentArray[index].name);
             break;
         case 2:
             cout << "Nhap lop: ";
@@ -205,13 +205,38 @@ void studentManagement::updateStudent(string id)
             this->studentArray[index].academicPerformance = this->studentArray[index].getAcademicPerformance(this->studentArray[index].averageScore);
             break;
         case 8:
-            cin>>this->studentArray[index];
+            cin >> this->studentArray[index];
             break;
         default:
             break;
         }
     }
-    else{
-        cout<<"khong tim thay sinh vien co ma so sinh vien "<<id<<" trong danh sach"<<endl;
+    else
+    {
+        cout << "khong tim thay sinh vien co ma so sinh vien " << id << " trong danh sach" << endl;
+    }
+}
+
+// sắp xếp danh sách sinh viên theo điểm trung bình giảm dần
+void studentManagement::sortStudentByGPA()
+{
+    int max;
+    Student temp;
+    for (int i = 0; i < this->currentSize; i++)
+    {
+        max = i;
+        for (int j = i + 1; j < this->currentSize; j++)
+        {
+            if (this->studentArray[j].averageScore > this->studentArray[max].averageScore)
+            {
+                max = j;
+            }
+        }
+        if (max != i)
+        {
+            temp = this->studentArray[max];
+            this->studentArray[max] = this->studentArray[i];
+            this->studentArray[i] = temp;
+        }
     }
 }
