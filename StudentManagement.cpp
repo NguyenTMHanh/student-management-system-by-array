@@ -79,6 +79,7 @@ void studentManagement::readFile(ifstream &input)
         this->addStudent(student);
     }
     cout << *this;
+    input.close();
 }
 // hàm xuất một danh sách sinh viên
 ostream &operator<<(ostream &out, const studentManagement &studentManagement)
@@ -94,6 +95,25 @@ ostream &operator<<(ostream &out, const studentManagement &studentManagement)
         out << setw(5) << i + 1 << studentManagement.studentArray[i];
     }
     return out;
+}
+
+//hàm ghi danh sách sinh viên ra file
+void studentManagement::writeFile(ofstream &output){
+    output.open("output.txt", ios::out);
+    output<<this->currentSize<<endl;
+    for(int i = 0 ; i< this->currentSize; i++){
+        output << this->studentArray[i].id<<",";
+        output << this->studentArray[i].name<<",";
+        output << this->studentArray[i].className<<",";
+        output<<this->studentArray[i].facultyName<<",";
+        output<<this->studentArray[i].sex<<",";
+        output<<this->studentArray[i].mathScore<<",";
+        output<<this->studentArray[i].englishScore<<",";
+        output<<this->studentArray[i].literatureScore<<",";
+        output<<this->studentArray[i].averageScore<<",";
+        output<<this->studentArray[i].academicPerformance<<endl;
+    }
+    output.close();
 }
 
 // hàm thêm một mảng sinh viên vào danh sách

@@ -24,9 +24,11 @@ int main()
     // cout << studentManagement;
 
     ifstream input;
+    ofstream output;
     studentManagement studentManagement;
     studentManagement.readFile(input);
     studentManagement.addStudentArray();
     cout<<studentManagement;
+    studentManagement.writeFile(output);
     return 0;
 }
