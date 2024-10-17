@@ -1,0 +1,3 @@
+10
+123200100,Nguyen Thi My Hanh,20PFIEV3,CNTT,nu,10,9,8
+123200101,Doan Trong Minh Hoang,20PFIEV3,FAST,nam,7,8,9

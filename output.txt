@@ -1,0 +1,5 @@
+4
+123200100,Nguyen Thi My Hanh,20PFIEV3,CNTT,nu,10,9,8,9,Gioi
+123200102,Tran Thi Thanh Hien,20PFIEV3,CNTT,nu,10,9,8,9,Gioi
+123200103,Nguyen Van B,20PFIEV3,FAST,nam,8,9,10,9,Gioi
+123200101,Doan Trong Minh Hoang,20PFIEV3,FAST,nam,7,8,9,8,Kha
