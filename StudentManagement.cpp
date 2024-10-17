@@ -1,10 +1,11 @@
 #include <iostream>
+#include <fstream>
 #include "Student.h"
 #include <iomanip>
 using namespace std;
 
 // hàm dựng mặc định
-studentManagement::studentManagement(int maxSize, int currentSize) : maxSize(maxSize), currentSize(currentSize)
+studentManagement::studentManagement(int maxSize, int currentSize) : maxSize(maxSize), currentSize(0)
 {
     this->studentArray = new Student[maxSize];
 }
@@ -13,7 +14,7 @@ studentManagement::studentManagement(int maxSize, int currentSize) : maxSize(max
 studentManagement::studentManagement(const Student studentArray[], int size)
 {
     this->maxSize = size;
-    this->currentSize = size;
+    this->currentSize = 0;
     this->studentArray = new Student[maxSize];
     for (int i = 0; i < size; i++)
     {
@@ -38,6 +39,47 @@ istream &operator>>(istream &in, studentManagement &studentManagement)
     return in;
 }
 
+// hàm đọc file đầu vào input
+void studentManagement::readFile(ifstream &input)
+{
+    input.open("input.txt", ios::in);
+    if (!input.is_open())
+    {
+        cout << "Could not open the file" << endl;
+        return;
+    }
+    string line;
+    if (getline(input, line))
+    {
+        this->maxSize = stoi(line);
+        this->studentArray = new Student[this->maxSize];
+    }
+    else
+    {
+        cout << "File is empty or not properly formatted" << endl;
+    }
+    while (getline(input, line))
+    {
+        Student student;
+        stringstream ss(line);
+        string math, english, literature;
+        getline(ss, student.id, ',');
+        getline(ss, student.name, ',');
+        getline(ss, student.className, ',');
+        getline(ss, student.facultyName, ',');
+        getline(ss, student.sex, ',');
+        getline(ss, math, ',');
+        getline(ss, english, ',');
+        getline(ss, literature, ',');
+        student.mathScore = stof(math);
+        student.englishScore = stof(english);
+        student.literatureScore = stof(literature);
+        student.averageScore = (student.mathScore + student.englishScore + student.literatureScore) / 3;
+        student.academicPerformance = student.getAcademicPerformance(student.averageScore);
+        this->addStudent(student);
+    }
+    cout << *this;
+}
 // hàm xuất một danh sách sinh viên
 ostream &operator<<(ostream &out, const studentManagement &studentManagement)
 {
@@ -54,8 +96,8 @@ ostream &operator<<(ostream &out, const studentManagement &studentManagement)
     return out;
 }
 
-// hàm thêm một sinh viên
-void studentManagement::addStudent()
+// hàm thêm một mảng sinh viên vào danh sách
+void studentManagement::addStudentArray()
 {
     int addSize;
     cout << "\nnhap so luong sinh vien ban muon them: ";
@@ -91,6 +133,14 @@ void studentManagement::addStudent()
         this->currentSize++;
     }
     delete[] addStudentArray;
+}
+
+// hàm thêm một sinh viên vào cuối danh sách
+void studentManagement::addStudent(const Student &student)
+{
+    this->currentSize += 1;
+    this->maxSize = this->currentSize;
+    this->studentArray[this->currentSize - 1] = student;
 }
 
 // hàm kiểm tra xem một mã số sinh viên bất kỳ có tồn tại không
@@ -236,9 +286,9 @@ void studentManagement::searchAndShowStudent()
         cin >> search;
         cout << "\n                                                        DANH SACH SINH VIEN                                " << endl;
         cout << left << setw(5) << "STT" << setw(15) << "ID" << setw(30) << "Ho va ten"
-            << setw(10) << "Lop" << setw(10) << "Khoa" << setw(15) << "Gioi tinh" << setw(10) << "Toan"
-            << setw(10) << "Anh" << setw(10) << "Van" << setw(10) << "Diem TB"
-            << setw(10) << "Hoc luc" << endl;
+             << setw(10) << "Lop" << setw(10) << "Khoa" << setw(15) << "Gioi tinh" << setw(10) << "Toan"
+             << setw(10) << "Anh" << setw(10) << "Van" << setw(10) << "Diem TB"
+             << setw(10) << "Hoc luc" << endl;
         for (int i = 0; i < this->currentSize; i++)
         {
             if (this->studentArray[i].id == search)
@@ -252,9 +302,9 @@ void studentManagement::searchAndShowStudent()
         getline(cin >> std::ws, search);
         cout << "\n                                                        DANH SACH SINH VIEN                                " << endl;
         cout << left << setw(5) << "STT" << setw(15) << "ID" << setw(30) << "Ho va ten"
-            << setw(10) << "Lop" << setw(10) << "Khoa" << setw(15) << "Gioi tinh" << setw(10) << "Toan"
-            << setw(10) << "Anh" << setw(10) << "Van" << setw(10) << "Diem TB"
-            << setw(10) << "Hoc luc" << endl;
+             << setw(10) << "Lop" << setw(10) << "Khoa" << setw(15) << "Gioi tinh" << setw(10) << "Toan"
+             << setw(10) << "Anh" << setw(10) << "Van" << setw(10) << "Diem TB"
+             << setw(10) << "Hoc luc" << endl;
         for (int i = 0; i < this->currentSize; i++)
         {
             if (this->studentArray[i].name == search)
@@ -267,6 +317,7 @@ void studentManagement::searchAndShowStudent()
         break;
     }
 }
+
 // sắp xếp danh sách sinh viên theo điểm trung bình giảm dần
 void studentManagement::sortStudentByGPA()
 {

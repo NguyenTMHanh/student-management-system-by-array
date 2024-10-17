@@ -12,12 +12,14 @@ public:
     studentManagement(const Student studentArray[], int size);
     ~studentManagement();
     friend istream &operator>>(istream &in, studentManagement &studentManagement);
+    void readFile(ifstream &input);
     friend ostream &operator<<(ostream &out, const studentManagement &studentManagement);
-    void addStudent();
+    void addStudentArray();
     bool indexOf(string id);
     void removeStudent(string id);
     void updateStudent(string id);
     int searchStudent(string id);
     void searchAndShowStudent();
     void sortStudentByGPA();
+    void addStudent(const Student &student);
 };
