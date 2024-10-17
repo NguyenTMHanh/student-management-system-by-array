@@ -14,6 +14,7 @@ public:
     friend istream &operator>>(istream &in, studentManagement &studentManagement);
     void readFile(ifstream &input);
     friend ostream &operator<<(ostream &out, const studentManagement &studentManagement);
+    void writeFile(ofstream &output);
     void addStudentArray();
     bool indexOf(string id);
     void removeStudent(string id);
