@@ -29,4 +29,5 @@ public:
     friend int studentManagement::searchStudent(string id);
     friend void studentManagement::searchAndShowStudent();
     friend void studentManagement::sortStudentByGPA();
+    friend void studentManagement::readFile(ifstream &input);
 };
